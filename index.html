@@ -11,15 +11,15 @@
 
     <script>
         function sendPostRequest() {
-            const url = 'https://example.com/api'; // 替换为实际的API URL
+            const url = 'http://112.94.69.58:8086/admin/login'; // 替换为实际的API URL
             const params = {
-                key1: 'value1',
-                key2: 'value2'
+                username: 'C46CD8A6814A8049059309E6D664F81E',
+                password: '6F2A3FFD2D3F31CF8C9D1D6ADFE023001357391B62F79088CD9DD632C6088358'
             };
 
             const xhr = new XMLHttpRequest();
             xhr.open('POST', url, true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) { // 请求完成
@@ -28,7 +28,7 @@
                         const headers = xhr.getAllResponseHeaders().trim().split(/[\r\n]+/).reduce((acc, line) => {
                             const parts = line.split(': ');
                             const header = parts.shift();
-                            const value = parts.join(': ');
+                            const value = parts.join('&');
                             acc[header] = value;
                             return acc;
                         }, {});
