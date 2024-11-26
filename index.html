@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POST Request Example</title>
+</head>
+<body>
+    <h1>Response Headers</h1>
+    <pre id="responseHeaders"></pre>
+
+    <script>
+        function sendPostRequest() {
+            const url = 'https://example.com/api'; // 替换为实际的API URL
+            const params = {
+                key1: 'value1',
+                key2: 'value2'
+            };
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', url, true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) { // 请求完成
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        // 获取响应头信息
+                        const headers = xhr.getAllResponseHeaders().trim().split(/[\r\n]+/).reduce((acc, line) => {
+                            const parts = line.split(': ');
+                            const header = parts.shift();
+                            const value = parts.join(': ');
+                            acc[header] = value;
+                            return acc;
+                        }, {});
+
+                        // 将响应头信息显示在页面上
+                        document.getElementById('responseHeaders').textContent = JSON.stringify(headers, null, 2);
+                    } else {
+                        console.error('Error:', xhr.statusText);
+                    }
+                }
+            };
+
+            xhr.send(JSON.stringify(params));
+        }
+
+        // 调用函数发送POST请求
+        sendPostRequest();
+    </script>
+</body>
+</html>
