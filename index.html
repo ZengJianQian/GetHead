@@ -32,7 +32,9 @@
                 fetch(url, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'Accept':"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+                        'Referer':"http://112.94.69.58:8086/admin/login"
                     },
                     body: `username=${id}&password=${password}`
                 })
